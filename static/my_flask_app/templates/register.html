@@ -1,0 +1,52 @@
+{% extends"layout.html"%}
+{% block body %}
+    <h1>Register</h1>
+    <form action="/register" method="post">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Name" maxlength="" required> <br>
+        <label>Email</label>
+        <input type="text" name="email" placeholder="Enter Email" required> <br>
+        <label for="state">State</label>
+        <select name="state" id="" required>
+            <option value="Abia">Abia</option>
+            <option value="Adamawa">Adamawa</option>
+            <option value="Akwa Ibom">Akwa Ibom</option>
+            <option value="Enugu">Enugu</option>
+            <option value="Delta">Delte</option>
+            <option value="Jigawa">Jigawa</option>
+            <option value="Imo">Imo</option>
+            <option value="Kogi">Kogi</option>
+            <option value="Yobe">Yobe</option>
+            <option value="Cross River">Cross River</option>
+            <option value="Gombe">Gombe</option>
+            <option value="<kebbi">Kebbi</option>
+            <option value="Ebonyi">Eboyi</option>
+            <option value="Ekiti">Ekiti</option>
+            <option value="Zamfara">Zamfara</option>
+            <option value="Benue">Benue</option>
+            <option value="Oyo">Oyo</option>
+            <option value="Kwara">Kwara</option>
+            <option value="Bayelsa">Bayelsa</option>
+            <option value="Ondo">Ondo</option>
+            <option value="Rivers">Rivers</option>
+            <option value="Borno">Borno</option>
+            <option value="Bauchi">Bauchi</option>
+            <option value="Taraba">Taraba</option>
+            <option value="Nasarawa">Nasarawa</option>
+            <option value="Kano">Kano</option>
+            <option value="Osun">Osun</option>
+            <option value="Edo">Edo</option>
+            <option value="Sokoto">Sokoto</option>
+            <option value="Kaduna">Kaduna</option>
+            <option value="Plateau">Plateau</option>
+            <option value="Katsina">Katsina</option>
+            <option value="Niger">Niger</option>
+            <option value="Ogun">Ogun</option>
+            <option value="Lagos">Lagos</option>
+            <option value="FCT Abuja">FCT Abuja</option>
+
+        </select><br><br>
+
+        <button type="submit" value="submit" name="submit">Submit</button>
+    </form>
+{%endblock%}

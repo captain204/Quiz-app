@@ -1,0 +1,18 @@
+{% extends"admin/layouts_admin.html"%}
+{% block body %}
+    
+        <h1 class="text-center">Login</h1>
+        <form action="" method="POST">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="{{request.form.username}}">
+            </div>
+            <div class="form-group">
+                <label>password</label>
+                <input type="password" name="password" class="form-control" value="{{request.form.password}}">
+            </div>
+            <button type="submit" class="btn btn-primary pull-left" name="submit">Login</button>
+        </form>
+       
+
+{% endblock %}

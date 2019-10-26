@@ -1,0 +1,26 @@
+{% extends"layouts.html"%}
+{% block body %}
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Time <span>00.00</span></h5>
+    <p class="card-text">
+      {{select}}
+      <form action="/quiz" method="POST">
+        {% for q in questions %}
+        <h3>{{q.question}}</h3>
+        <ol type="a">
+          <li><input type="radio" name="a" value="{{q.option_a}}">{{q.option_a}}</li>
+          <li><input type="radio" name="a" value="{{q.option_b}}">{{q.option_b}}</li>
+          <li><input type="radio" name="a" value="{{q.option_c}}">{{q.option_c}}</li>
+          <li><input type="radio" name="a" value="{{q.option_d}}">{{q.option_d}}</li>
+        </ol>
+        {% endfor %}
+        <button type="submit" name="submit" class="btn btn-primary"> Submit</button>
+      </form>
+  
+  
+  </p>
+  
+  </div>
+</div>
+{%endblock%}
