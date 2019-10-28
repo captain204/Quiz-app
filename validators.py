@@ -18,15 +18,17 @@ class User(Form):
     stack = SelectField('Select Stack', choices=[('python', 'python'),('php', 'php'),('javascript', 'javascript'),])
 
 class Add(Form):
+    number = StringField(u'Question Number',validators=[validators.input_required(),
+    validators.Length(max=250)])
     question = TextAreaField(u'Question',validators=[validators.input_required(),
     validators.Length(min=10,max=2500)])
-    category = SelectField('Category', choices=[('python', 'python'),('php', 'php'),('javascript', 'javascript'),])
     option_a = StringField(u'Option A',validators=[validators.input_required(),
-    validators.Length(min=3,max=250)])
+    validators.Length(max=250)])
     option_b = StringField(u'Option B',validators=[validators.input_required(),
-    validators.Length(min=3,max=250)])
+    validators.Length(max=250)])
     option_c = StringField(u'Option C',validators=[validators.input_required(),
-    validators.Length(min=3,max=250)])
+    validators.Length(max=250)])
     option_d = StringField(u'Option D',validators=[validators.input_required(),
-    validators.Length(min=3,max=250)])
-    correct = SelectField('Correct Answer', choices=[('a', 'a'),('b', 'b'),('c', 'c'),('d', 'd'),])
+    validators.Length(max=250)])
+    correct = StringField(u'Correct Answer',validators=[validators.input_required(),
+    validators.Length(max=250)])

@@ -64,7 +64,7 @@ def logout():
 #@is_logged_in
 def dashboard():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * from questions")
+    cur.execute("SELECT * from question")
     result = cur.fetchall()
     return render_template('admin/dashboard.html', questions = result)
 
@@ -97,20 +97,32 @@ def javascript():
 def add():
     form = Add(request.form)
     if request.method == 'POST' and form.validate():
-        question = form.question.data
-        category = form.category.data
-        option_a = form.option_a.data
-        option_b = form.option_b.data
-        option_c = form.option_c.data
-        option_d = form.option_d.data
-        correct = form.correct.data
-        author = "admin"
+        number = request.form['number']
+        question = request.form['question']
+        correct = request.form['correct']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT into questions(question, category, option_a, option_b, option_c, option_d, correct, author) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",(question, category, option_a,option_b, option_c, option_d, correct, author))
+        cur.execute("INSERT into question(id, question) VALUES(%s, %s)",(number,question))
         mysql.connection.commit()
         cur.close()
-        flash("Question Added successfully","success")
 
+        # Creating a list of options
+        options = []
+        options.append(request.form['option_a'])
+        options.append(request.form['option_b'])
+        options.append(request.form['option_c'])
+        options.append(request.form['option_d'])
+
+        for option in options:
+            if  option == correct:
+                is_correct = 1
+            else:
+                is_correct =0
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT into choices(question_number, is_correct,choice) VALUES(%s, %s,%s)",(number,is_correct,option))
+            mysql.connection.commit()
+            cur.close()
+        flash("Question Added successfully","success")
+        #return redirect(url_for("dashboard"))
     return render_template('admin/add.html', form=form)
 
 
@@ -129,12 +141,15 @@ def update(id):
     form.author.data = question['author']
 
     if request.method == 'POST' and form.validate():
+        question_num = request.form['question_num']
         question = request.form['question']
-        category = request.form['category']
-        option_a = request.form['option_a']
-        option_b = request.form['option_b']
-        option_c = request.form['option_c']
-        option_d = request.form['option_d']
+        # Creating a list of options
+        options = []
+        optilt = cur.execute("SELECT *  questions WHERE id=%s",[id])
+    question = cur.fetchone()on[0] = request.form['option_a']
+        option[1] = request.form['option_b']
+        option_[2] = request.form['option_c']
+        option[3] = request.form['option_d']
         author = "admin"
         cur.execute("UPDATE questions SET question=%s, category =%s, option_a = %s, option_b = %s, option_c = %s, option_d = %s WHERE id = %s",(question,category,option_a, option_b, option_c,option_d, author))
         mysql.connection.commit()
@@ -147,7 +162,11 @@ def update(id):
 @app.route("/delete/<string:id>/",methods=['POST'])
 def delete(id):
     cur = mysql.connection.cursor()
-    cur.execute("DELETE FROM questions WHERE id=%s",[id])
+    cur.execute("DELETE FROM question WHERE id=%s",[id])
+    mysql.connection.commit()
+    cur.close()
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM choices WHERE  question_number=%s",[id])
     mysql.connection.commit()
     cur.close()
     flash("Deleted","danger")

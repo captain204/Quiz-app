@@ -4,21 +4,19 @@
   <div class="card-body">
     <h5 class="card-title">Time <span>00.00</span></h5>
     <p class="card-text">
-      {{select}}
-      <form action="/quiz" method="POST">
-        {% for q in questions %}
-        <h3>{{q.question}}</h3>
-        <ol type="a">
-          <li><input type="radio" name="a" value="{{q.option_a}}">{{q.option_a}}</li>
-          <li><input type="radio" name="a" value="{{q.option_b}}">{{q.option_b}}</li>
-          <li><input type="radio" name="a" value="{{q.option_c}}">{{q.option_c}}</li>
-          <li><input type="radio" name="a" value="{{q.option_d}}">{{q.option_d}}</li>
-        </ol>
-        {% endfor %}
-        <button type="submit" name="submit" class="btn btn-primary"> Submit</button>
+      <form action="" method="POST">
+        
+        <h3>{{questions.id}}.{{questions.question}}</h3>
+        
+          {% for option in choices %}
+          <ul>
+          <input type="radio" name="choice" value="{{option.id}}">{{option.choice}}
+          </ul>
+          <input type="hidden" name="number" value = "{{number}}">
+          {% endfor %}
+        <button type="submit" name="submit" class="btn btn-primary"> Next</button>
       </form>
-  
-  
+    
   </p>
   
   </div>

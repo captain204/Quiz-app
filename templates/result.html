@@ -1,0 +1,14 @@
+{% extends"layouts.html"%}
+{% block body %}
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title"> <span>{{session.username}}</span></h5>
+    <p class="card-text">
+        <h2>Thank you for taking the test</h2>
+        <h1 class="text-center">Your score is:{{session.score}}</h1>
+    </p>
+    
+    <a href="/logout_user" class="btn btn-primary">Logout</a>
+  </div>
+</div>
+{%endblock%}

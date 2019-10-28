@@ -8,11 +8,6 @@
                           <tr>
                             <th scope="col">S/N</th>
                             <th scope="col">Question</th>
-                            <th scope="col">Option a</th>
-                            <th scope="col">Option b</th>
-                            <th scope="col">Option c</th>
-                            <th scope="col">Option d</th>
-                            <th scope="col">Correct</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -20,11 +15,6 @@
                           <tr>
                             <td>{{q.id}}</td>
                             <td>{{q.question}}</td>
-                            <td>{{q.option_a}}</td>
-                            <td>{{q.option_b}}</td>
-                            <td>{{q.option_c}}</td>
-                            <td>{{q.option_d}}</td>
-                            <td>{{q.correct}}</td>
                             <td><a href="/update/{{q.id}}" class="btn btn-primary">Update</a> </td>
                             <td>
                               <form action="{{url_for('delete',id=q.id)}}" method="POST">
